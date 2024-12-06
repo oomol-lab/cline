@@ -157,8 +157,16 @@ vscode-dropdown::part(listbox) {
 	bottom: -0.5px; */
 }
 
+body.vscode-dark {
+    --oomol-mention-color: #454680;
+}
+
+body.vscode-light {
+    --oomol-mention-color: #B7B9F3;
+}
+
 .mention-context-highlight {
-	background-color: color-mix(in srgb, var(--vscode-badge-foreground) 30%, transparent);
+	background-color: var(--oomol-mention-color);
 	border-radius: 3px;
 }
 

@@ -107,7 +107,7 @@ const TaskHeader: React.FC<TaskHeaderProps> = ({
 		<div style={{ padding: "10px 13px 10px 13px" }}>
 			<div
 				style={{
-					backgroundColor: "var(--vscode-badge-background)",
+					backgroundColor: "var(--vscode-tab-inactiveBackground)",
 					color: "var(--vscode-badge-foreground)",
 					borderRadius: "3px",
 					padding: "9px 10px 9px 14px",
