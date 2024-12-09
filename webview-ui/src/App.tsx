@@ -26,7 +26,8 @@ const AppContent = () => {
             setI18n(instance)
         });
         return () =>  i18n?.dispose()
-    }, [locale, i18n])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [locale])
 
 	const handleMessage = useCallback((e: MessageEvent) => {
 		const message: ExtensionMessage = e.data
