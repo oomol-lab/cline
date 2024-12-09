@@ -1,0 +1,13 @@
+{
+  "whatCanIDo": "我能为您做些什么？",
+  "welcomeDesc": "我可以逐步处理复杂的软件开发任务。借助创建和编辑文件、探索复杂项目、使用浏览器以及执行终端命令（在你授权后）的工具，我能够以超越代码补全或技术支持的方式协助你。",
+  "typeMessage": "输入消息（@添加上下文）...",
+  "typeTask": "在此处输入任务（@添加上下文）...",
+  "settings": {
+    "title": "设置",
+    "customInstructions": "自定义指令",
+    "customInstructionsDesc": "这些指令会被添加到随每一次请求发送的系统提示的末尾。",
+    "alwaysApprove": "始终批准只读操作",
+    "alwaysApproveDesc": "启用后，Cline 将自动查看目录内容和读取文件，而无需您点击“批准”按钮。"
+  }
+}

@@ -23,6 +23,7 @@ import BrowserSessionRow from "./BrowserSessionRow"
 import ChatRow from "./ChatRow"
 import ChatTextArea from "./ChatTextArea"
 import TaskHeader from "./TaskHeader"
+import { useTranslate } from "val-i18n-react"
 
 interface ChatViewProps {
 	isHidden: boolean
@@ -59,6 +60,7 @@ const ChatView = ({ isHidden, showHistoryView }: ChatViewProps) => {
 	const disableAutoScrollRef = useRef(false)
 	const [showScrollToBottom, setShowScrollToBottom] = useState(false)
 	const [isAtBottom, setIsAtBottom] = useState(false)
+    const t = useTranslate();
 
 	// UI layout depends on the last 2 messages
 	// (since it relies on the content of these messages, we are deep comparing. i.e. the button state after hitting button sets enableButtons to false, and this effect otherwise would have to true again even if messages didn't change
@@ -631,9 +633,9 @@ const ChatView = ({ isHidden, showHistoryView }: ChatViewProps) => {
 	useEvent("wheel", handleWheel, window, { passive: true }) // passive improves scrolling performance
 
 	const placeholderText = useMemo(() => {
-		const text = task ? "Type a message (@ to add context)..." : "Type your task here (@ to add context)..."
+		const text = task ? t("typeMessage") : t("typeTask")
 		return text
-	}, [task])
+	}, [task, t])
 
 	const itemContent = useCallback(
 		(index: number, messageOrGroup: ClineMessage | ClineMessage[]) => {
@@ -705,12 +707,9 @@ const ChatView = ({ isHidden, showHistoryView }: ChatViewProps) => {
 						flexDirection: "column",
 					}}>
 					<div style={{ padding: "0 20px", flexShrink: 0 }}>
-						<h2>What can I do for you?</h2>
+						<h2>{t("whatCanIDo")}</h2>
 						<p>
-							I can handle complex software development tasks step-by-step. With tools that let me create
-							& edit files, explore complex projects, use the browser, and execute terminal commands
-							(after you grant permission), I can assist you in ways that go beyond code completion or
-							tech support.
+							{t("welcomeDesc")}
 						</p>
 					</div>
 					{taskHistory.length > 0 && <HistoryPreview showHistoryView={showHistoryView} />}

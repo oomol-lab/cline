@@ -12,7 +12,7 @@ import { getTheme } from "../../integrations/theme/getTheme"
 import WorkspaceTracker from "../../integrations/workspace/WorkspaceTracker"
 import { ApiProvider, ModelInfo } from "../../shared/api"
 import { findLast } from "../../shared/array"
-import { ExtensionMessage } from "../../shared/ExtensionMessage"
+import { ExtensionMessage, Locale } from "../../shared/ExtensionMessage"
 import { HistoryItem } from "../../shared/HistoryItem"
 import { WebviewMessage } from "../../shared/WebviewMessage"
 import { fileExistsAtPath } from "../../utils/fs"
@@ -333,6 +333,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 								}
 							}
 						})
+                        this.postMessageToWebview({ type: "locale", locale: vscode.env.language as Locale })
 						break
 					case "newTask":
 						// Code that should run in response to the hello message command

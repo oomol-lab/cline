@@ -17,6 +17,7 @@ interface ExtensionStateContextType extends ExtensionState {
 	theme: any
 	openRouterModels: Record<string, ModelInfo>
 	filePaths: string[]
+    locale: "en" | "zh-cn"
 	setApiConfiguration: (config: ApiConfiguration) => void
 	setCustomInstructions: (value?: string) => void
 	setAlwaysAllowReadOnly: (value: boolean) => void
@@ -39,6 +40,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 	const [openRouterModels, setOpenRouterModels] = useState<Record<string, ModelInfo>>({
 		[openRouterDefaultModelId]: openRouterDefaultModelInfo,
 	})
+    const [locale, setLocale] = useState<"en" | "zh-cn">("en")
 
 	const handleMessage = useCallback((event: MessageEvent) => {
 		const message: ExtensionMessage = event.data
@@ -95,6 +97,10 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 				})
 				break
 			}
+            case "locale": {
+                setLocale(message.locale ?? "en")
+                break
+            }
 		}
 	}, [])
 
@@ -111,6 +117,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		theme,
 		openRouterModels,
 		filePaths,
+        locale,
 		setApiConfiguration: (value) => setState((prevState) => ({ ...prevState, apiConfiguration: value })),
 		setCustomInstructions: (value) => setState((prevState) => ({ ...prevState, customInstructions: value })),
 		setAlwaysAllowReadOnly: (value) => setState((prevState) => ({ ...prevState, alwaysAllowReadOnly: value })),

@@ -1,0 +1,13 @@
+{
+  "whatCanIDo": "What can I do for you?",
+  "welcomeDesc": "I can handle complex software development tasks step-by-step. With tools that let me create & edit files, explore complex projects, use the browser, and execute terminal commands (after you grant permission), I can assist you in ways that go beyond code completion or tech support.",
+  "typeMessage": "Type a message (@ to add context)...",
+  "typeTask": "Type your task here (@ to add context)...",
+  "settings": {
+    "title": "Settings",
+    "customInstructions": "Custom Instructions",
+    "customInstructionsDesc": "These instructions are added to the end of the system prompt sent with every request.",
+    "alwaysApprove": "Always approve read-only operations",
+    "alwaysApproveDesc": "When enabled, Cline will automatically view directory contents and read files without requiring you to click the Approve button."
+  }
+}

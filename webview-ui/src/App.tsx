@@ -7,12 +7,26 @@ import SettingsView from "./components/settings/SettingsView"
 import WelcomeView from "./components/welcome/WelcomeView"
 import { ExtensionStateContextProvider, useExtensionState } from "./context/ExtensionStateContext"
 import { vscode } from "./utils/vscode"
+import { I18nProvider } from "val-i18n-react"
+import { I18n } from "val-i18n"
+import { createI18n } from "./locales"
 
 const AppContent = () => {
-	const { didHydrateState, showWelcome, shouldShowAnnouncement } = useExtensionState()
+	const { didHydrateState, showWelcome, shouldShowAnnouncement, locale } = useExtensionState()
 	const [showSettings, setShowSettings] = useState(false)
 	const [showHistory, setShowHistory] = useState(false)
 	const [showAnnouncement, setShowAnnouncement] = useState(false)
+    const [i18n, setI18n] = useState<I18n | null>(null)
+
+    useEffect(() => {
+        if (i18n) {
+            i18n.dispose()
+        }
+        createI18n(locale).then(instance => {
+            setI18n(instance)
+        });
+        return () =>  i18n?.dispose()
+    }, [locale, i18n])
 
 	const handleMessage = useCallback((e: MessageEvent) => {
 		const message: ExtensionMessage = e.data
@@ -49,8 +63,12 @@ const AppContent = () => {
 		return null
 	}
 
+    if (!i18n) {
+        return null
+    }
+
 	return (
-		<>
+		<I18nProvider i18n={i18n}>
 			{showWelcome ? (
 				<WelcomeView />
 			) : (
@@ -71,14 +89,14 @@ const AppContent = () => {
 					/>
 				</>
 			)}
-		</>
+        </I18nProvider>
 	)
 }
 
 const App = () => {
 	return (
 		<ExtensionStateContextProvider>
-			<AppContent />
+            <AppContent />
 		</ExtensionStateContextProvider>
 	)
 }

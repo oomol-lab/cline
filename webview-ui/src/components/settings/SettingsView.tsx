@@ -4,6 +4,7 @@ import { useExtensionState } from "../../context/ExtensionStateContext"
 import { validateApiConfiguration, validateModelId } from "../../utils/validate"
 import { vscode } from "../../utils/vscode"
 import ApiOptions from "./ApiOptions"
+import { useTranslate } from "val-i18n-react"
 
 const IS_DEV = false // FIXME: use flags when packaging
 
@@ -12,6 +13,7 @@ type SettingsViewProps = {
 }
 
 const SettingsView = ({ onDone }: SettingsViewProps) => {
+    const t = useTranslate()
 	const {
 		apiConfiguration,
 		version,
@@ -79,7 +81,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					marginBottom: "17px",
 					paddingRight: 17,
 				}}>
-				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>Settings</h3>
+				<h3 style={{ color: "var(--vscode-foreground)", margin: 0 }}>{t("settings.title")}</h3>
 				<VSCodeButton onClick={handleSubmit}>Done</VSCodeButton>
 			</div>
 			<div
@@ -101,7 +103,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							'e.g. "Run unit tests at the end", "Use TypeScript with async/await", "Speak in Spanish"'
 						}
 						onInput={(e: any) => setCustomInstructions(e.target?.value ?? "")}>
-						<span style={{ fontWeight: "500" }}>Custom Instructions</span>
+						<span style={{ fontWeight: "500" }}>{t("settings.customInstructions")}</span>
 					</VSCodeTextArea>
 					<p
 						style={{
@@ -109,7 +111,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						These instructions are added to the end of the system prompt sent with every request.
+						{t("settings.customInstructionsDesc")}
 					</p>
 				</div>
 
@@ -117,7 +119,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 					<VSCodeCheckbox
 						checked={alwaysAllowReadOnly}
 						onChange={(e: any) => setAlwaysAllowReadOnly(e.target.checked)}>
-						<span style={{ fontWeight: "500" }}>Always approve read-only operations</span>
+						<span style={{ fontWeight: "500" }}>{t("settings.alwaysApprove")}</span>
 					</VSCodeCheckbox>
 					<p
 						style={{
@@ -125,8 +127,7 @@ const SettingsView = ({ onDone }: SettingsViewProps) => {
 							marginTop: "5px",
 							color: "var(--vscode-descriptionForeground)",
 						}}>
-						When enabled, Cline will automatically view directory contents and read files without requiring
-						you to click the Approve button.
+						{t("settings.alwaysApproveDesc")}
 					</p>
 				</div>
 

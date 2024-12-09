@@ -3,6 +3,9 @@
 import { ApiConfiguration, ModelInfo } from "./api"
 import { HistoryItem } from "./HistoryItem"
 
+
+export type Locale = "en" | "zh-cn"
+
 // webview will hold state
 export interface ExtensionMessage {
 	type:
@@ -16,6 +19,7 @@ export interface ExtensionMessage {
 		| "invoke"
 		| "partialMessage"
 		| "openRouterModels"
+        | "locale"
 	text?: string
 	action?: "chatButtonClicked" | "settingsButtonClicked" | "historyButtonClicked" | "didBecomeVisible"
 	invoke?: "sendMessage" | "primaryButtonClick" | "secondaryButtonClick"
@@ -26,6 +30,7 @@ export interface ExtensionMessage {
 	filePaths?: string[]
 	partialMessage?: ClineMessage
 	openRouterModels?: Record<string, ModelInfo>
+    locale?: Locale
 }
 
 export interface ExtensionState {
