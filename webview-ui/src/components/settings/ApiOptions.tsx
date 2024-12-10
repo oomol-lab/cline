@@ -411,7 +411,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage }: 
 				</div>
 			)}
 
-			{selectedProvider === "openai" && (
+			{/* {selectedProvider === "openai" && (
 				<div>
 					<VSCodeTextField
 						value={apiConfiguration?.openAiBaseUrl || ""}
@@ -467,7 +467,7 @@ const ApiOptions = ({ showModelOptions, apiErrorMessage, modelIdErrorMessage }: 
 						</span>
 					</p>
 				</div>
-			)}
+			)} */}
 
 			{selectedProvider === "lmstudio" && (
 				<div>
